@@ -72,5 +72,12 @@ public class ProductController {
 		return result;
 	}
 	
+	@RequestMapping(value ="search/{name}", method = RequestMethod.GET)
+	public List<Product> search(@PathVariable String name){
+		List<Product> result = new ArrayList<Product>();
+		productDao.findByName(name).forEach(result::add);
+		
+		return result;
+		};
+	}
 	
-}

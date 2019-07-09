@@ -20,7 +20,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "product_grocery")
 @PrimaryKeyJoinColumn(name ="product_id")
-@DiscriminatorValue("grocery")
+@DiscriminatorValue("Grocery")
 public class ProductGrocery extends Product{
 	
 	@Column(name = "expiry_date",nullable = false)

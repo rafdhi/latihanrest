@@ -9,7 +9,8 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-
+@Data
+@MappedSuperclass
 public class BaseEntity {
 
 		@Id

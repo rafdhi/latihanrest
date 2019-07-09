@@ -26,17 +26,17 @@ import lombok.Data;
 @DiscriminatorColumn (name = "type" )
 public class Product {
 	
-	@Id
 	
 	// generated valuenya bisa milih mau pake SEQUENCE atau IDENTITY
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, // kayak counter (penghitung) di database, digunakan kalau gaada default value nya
-			generator = "product_id")
-	@SequenceGenerator(name = "product_id",
-			sequenceName = "product_id_seq",
-			allocationSize = 1) // buat nandain kalo naiknya itu satu angka(ditambah 1 tiap ngeadd)
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, // kayak counter (penghitung) di database, digunakan kalau gaada default value nya
+//			generator = "product_id")
+//	@SequenceGenerator(name = "product_id",
+	//		sequenceName = "product_id_seq",
+		//	allocationSize = 1) // buat nandain kalo naiknya itu satu angka(ditambah 1 tiap ngeadd)
 	
-	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	// kenapa many to one? ini kan class produk, nah produk itu punya satu merk
 	// contoh = laptop 1 laptop 2 itu brand nya lenovo

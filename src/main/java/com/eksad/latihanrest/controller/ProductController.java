@@ -1,6 +1,7 @@
 package com.eksad.latihanrest.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -28,10 +29,10 @@ public class ProductController {
 	@Autowired
 	BrandDao brandDao;
 	
-	@RequestMapping("getByBrandId/{brandId}")
-	public List<Product> getByBrandId(@PathVariable Long brandId){
+	@RequestMapping("getByProductId/{productId}")
+	public List<Product> getByProductId(@PathVariable Long productId){
 		List<Product> result = new ArrayList<Product>();
-		productDao.findByBrandId(brandId).forEach(result::add);
+		productDao.findByProductId(productId).forEach(result::add);
 		
 		return result;
 	}
@@ -45,4 +46,31 @@ public class ProductController {
 		}
 		return null;
 	}
+	
+	@RequestMapping(value ="update/{id}",method = RequestMethod.PUT)
+	public String update(@RequestBody Product product,@PathVariable Long id) {
+		Product productSelected = productDao.findById(id).orElse(null);
+		
+		if(productSelected != null) {
+			productSelected.setName(product.getName());
+			productSelected.setBrandId(product.getBrandId());
+			productSelected.setBrand(product.getBrand());
+			productSelected.setPrice(product.getPrice());
+			
+			productDao.save(productSelected);
+			return "berhasil memperbaharui";
+		}else {
+			return "gagal memperbaharui";
+		}
+	}
+	
+	@RequestMapping(value ="delete/{id}", method = RequestMethod.DELETE)
+	public HashMap<String, Object> delete(@PathVariable Long id){
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		productDao.deleteById(id);
+		result.put("message","Berhasil di hapus");
+		return result;
+	}
+	
+	
 }

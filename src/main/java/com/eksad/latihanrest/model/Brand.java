@@ -22,14 +22,15 @@ import lombok.ToString;
 @Data // kependekan dari @getter, @setter, @to string, @equalsandhashcode
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
+@Getter @Setter
 @Entity
 @Table(name = "brand")
 public class Brand extends BaseEntity {
 	
-	@Id // karna dia primary key
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // karna sifatnya bertingkat atau increment
-	@Column(unique = true, nullable = false)
-	private long id;
+//	@Id // karna dia primary key
+//	@GeneratedValue(strategy = GenerationType.IDENTITY) // karna sifatnya bertingkat atau increment
+	//@Column(unique = true, nullable = false)
+//	private Long id;
 	
 	@Column(nullable = false)
 	private String name;
